@@ -1,0 +1,104 @@
+@use 'variables' as *;
+
+$xs: var(--svkit-xs);
+$sm: var(--svkit-sm);
+$md: var(--svkit-md);
+$lg: var(--svkit-lg);
+$xl: var(--svkit-xl);
+$xxl: var(--svkit-xxl);
+
+// breakpoint for max width
+@mixin xsm($breakpoint: $xs) {
+	@media screen and (min-width: $breakpoint) {
+		@content;
+	}
+}
+
+@mixin sm($breakpoint: $sm) {
+	@media screen and (min-width: $breakpoint) {
+		@content;
+	}
+}
+
+@mixin md($breakpoint: $md) {
+	@media screen and (min-width: $breakpoint) {
+		@content;
+	}
+}
+
+@mixin lg($breakpoint: $lg) {
+	@media screen and (min-width: $breakpoint) {
+		@content;
+	}
+}
+@mixin xl($breakpoint: $xl) {
+	@media screen and (min-width: $breakpoint) {
+		@content;
+	}
+}
+@mixin xxl($breakpoint: $xxl) {
+	@media screen and (min-width: $breakpoint) {
+		@content;
+	}
+}
+
+// breakpoint min width
+@mixin max-xs($breakpoint: $xs) {
+	@media screen and (max-width: $breakpoint) {
+		@content;
+	}
+}
+
+@mixin max-sm($breakpoint: $sm) {
+	@media screen and (max-width: $breakpoint) {
+		@content;
+	}
+}
+
+@mixin max-md($breakpoint: $md) {
+	@media screen and (max-width: $breakpoint) {
+		@content;
+	}
+}
+
+@mixin max-lg($breakpoint: $lg) {
+	@media screen and (max-width: $breakpoint) {
+		@content;
+	}
+}
+@mixin max-xl($breakpoint: $xl) {
+	@media screen and (max-width: $breakpoint) {
+		@content;
+	}
+}
+@mixin max-xxl($breakpoint: $xxl) {
+	@media screen and (max-width: $breakpoint) {
+		@content;
+	}
+}
+/* 
+==================================
+====CUSTOM BREAKPOINT============ */
+@mixin bp($breakpoint) {
+	@media screen and (min-width: $breakpoint) {
+		@content;
+	}
+}
+@mixin max-bp($breakpoint) {
+	@media screen and (min-width: $breakpoint) {
+		@content;
+	}
+}
+
+/*======================================
+========= Media Query ============  */
+@mixin dark {
+	@media (prefers-color-scheme: dark) {
+		@content;
+	}
+}
+@mixin light {
+	@media (prefers-color-scheme: light) {
+		@content;
+	}
+}

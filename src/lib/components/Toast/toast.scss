@@ -1,0 +1,200 @@
+@use '../../../scss/utils/' as *;
+
+/* Theme Default */
+.svkit-toast-default-config {
+	--svkit-toast-container-padding: 10px;
+	--svkit-toast__bg: #ffffff;
+	--svkit-toast__padding: 1rem;
+	--svkit_toast__progress-bg: #ff0000;
+	--svkit-toast__width: 390px;
+	--svkit-toast__close-btn: #9f9e9e;
+	--svkit-toast__close-btn-hover: #565656;
+	--svkit-toast__offset: 1rem;
+	--svkit-toast__spaces: 0.5rem;
+	--svkit-toast__animation_duration: 0.25s;
+	--svkit-toast-container-padding: 10px;
+	--svkit-toast__lasting_duration: 5000ms;
+	// --svkit-
+	@include dark {
+		--svkit-toast__bg: #04121f;
+		--svkit_toast__progress-bg: #ff0000;
+		--svkit-toast__width: 390px;
+		--svkit-toast__close-btn: #9f9e9e;
+		--svkit-toast__close-btn-hover: #565656;
+	}
+	h1,
+	h3,
+	h2,
+	h4,
+	h5,
+	h6,
+	p {
+		margin: 0px;
+	}
+	.svkit-toast.custom {
+		--svkit-toast__padding: 0px;
+	}
+}
+
+.svkit-toast-container {
+	position: fixed;
+	padding: var(--svkit-toast-container-padding);
+	transition: 0.25s ease-in-out;
+
+	&.container-top-right {
+		top: var(--svkit-toast__offset, 0px);
+		right: var(--svkit-toast__offset, 0px);
+		.svkit-toast {
+			margin-left: auto;
+		}
+	}
+	&.container-top-middle {
+		top: var(--svkit-toast__offset, 0px);
+		left: 50%;
+		transform: translateX(-50%);
+
+		.svkit-toast {
+			margin: 0 auto;
+		}
+	}
+	&.container-top-left {
+		top: var(--svkit-toast__offset, 0px);
+		left: var(--svkit-toast__offset, 0px);
+
+		.svkit-toast {
+			margin-right: auto;
+		}
+	}
+
+	/* Bottom Position */
+	&.container-bottom-right {
+		bottom: var(--svkit-toast__offset, 0px);
+		right: var(--svkit-toast__offset, 0px);
+
+		.svkit-toast {
+			margin-left: auto;
+		}
+	}
+	&.container-bottom-middle {
+		bottom: var(--svkit-toast__offset, 0px);
+		left: 50%;
+		transform: translateX(-50%);
+
+		.svkit-toast {
+			margin: 0 auto;
+		}
+	}
+	&.container-bottom-left {
+		bottom: var(--svkit-toast__offset, 0px);
+		left: var(--svkit-toast__offset, 0px);
+
+		.svkit-toast {
+			margin-right: auto;
+		}
+	}
+}
+
+.svkit-toast {
+	position: relative;
+	isolation: isolate;
+	padding: var(--svkit-toast__padding, 1rem);
+	margin-bottom: var(--svkit-toast__spaces);
+	transform: scale(0.1) translateY(-200%);
+	opacity: 0.4;
+	transition: var(--svkit-toast__animation_duration) ease-out;
+	position: relative;
+	isolation: isolate;
+
+	&:not(.custom) {
+		background: var(--svkit-toast__bg);
+		width: var(--svkit-toast__width);
+		border-radius: 10px;
+		border: 0px var(--_border-color) solid;
+		border-left-width: 4px;
+		box-shadow:
+			rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+			rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+			rgb(209, 213, 219) 0px 1px 3px 0px,
+			rgb(209, 213, 219) 0px 1px 2px -1px;
+	}
+
+	&.success {
+		--_progress-bg: #00ff331a;
+		--_border-color: #47d764;
+		@include dark {
+			--_progress-bg: #00ff3331;
+			--_border-color: #47d764;
+		}
+	}
+	&.error {
+		--_progress-bg: #ff00301a;
+		--_border-color: #ff355b;
+	}
+	&.warning {
+		--_progress-bg: #ffb70018;
+		--_border-color: #ffc021;
+	}
+	&.info {
+		--_progress-bg: #0076ff1a;
+		--_border-color: #2f86eb;
+	}
+	&.animate {
+		opacity: 1;
+		transform: translateY(0%) scale(1);
+	}
+	&:last-child {
+		margin-bottom: 0px !important;
+	}
+	.auto-remove-progress {
+		position: absolute;
+		background: var(--_progress-bg);
+		width: 0%;
+		height: calc(100% - 15px);
+		top: 7.5px;
+		left: 7.5px;
+		border-radius: 5px;
+		z-index: -1;
+		animation: progress_auto_remove var(--svkit-toast__lasting_duration) linear 1 forwards;
+		@keyframes progress_auto_remove {
+			100% {
+				width: calc(100% - 15px);
+			}
+		}
+	}
+}
+.svkit-toast__content {
+	display: flex;
+	line-height: 1.2;
+	gap: 0 1rem;
+	align-items: center;
+	position: relative;
+}
+.svkit-toast__close-icon {
+	background: transparent;
+	position: absolute;
+	border: none;
+	color: var(--svkit-toast__close-btn);
+	cursor: pointer;
+	top: 15px;
+	right: 10px;
+	&:hover {
+		color: var(--svkit-toast__close-btn-hover);
+	}
+}
+.svkit-toast__title {
+	font-size: 18px;
+	font-weight: 600;
+	color: #303134;
+	text-transform: capitalize;
+	@include dark {
+		color: #b0b0b0;
+	}
+}
+.svkit-toast__message {
+	font-size: 16px;
+	color: #656565;
+
+	@include dark {
+		color: #cfcfcf;
+	}
+}

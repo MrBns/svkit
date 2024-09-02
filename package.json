@@ -1,6 +1,6 @@
 {
 	"name": "@mrbns/svkit",
-	"version": "0.0.1-alpha-04",
+	"version": "0.0.1-alpha-05",
 	"engines": {
 		"node": ">18"
 	},
@@ -32,28 +32,37 @@
 	],
 	"peerDependencies": {
 		"@sveltejs/kit": "^2.0.0",
-		"svelte": "^5.0.0-next.240"
+		"svelte": "^5.0.0-next.2"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/adapter-auto": "^3.2.4",
+		"@sveltejs/adapter-static": "^3.0.4",
 		"@sveltejs/kit": "^2.5.25",
-		"@sveltejs/package": "^2.0.0",
-		"@sveltejs/vite-plugin-svelte": "^4.0.0-next.6",
+		"@sveltejs/package": "^2.3.4",
+		"@sveltejs/vite-plugin-svelte": "4.0.0-next.6",
 		"@types/eslint": "^9.6.1",
-		"eslint": "^9.0.0",
+		"autoprefixer": "^10.4.20",
+		"eslint": "^9.9.1",
 		"eslint-config-prettier": "^9.1.0",
-		"eslint-plugin-svelte": "^2.36.0",
-		"globals": "^15.0.0",
-		"prettier": "^3.1.1",
-		"prettier-plugin-svelte": "^3.1.2",
-		"publint": "^0.1.9",
-		"svelte": "^5.0.0-next.240",
-		"svelte-check": "^3.6.0",
-		"typescript": "^5.0.0",
+		"eslint-plugin-svelte": "^2.43.0",
+		"globals": "^15.9.0",
+		"postcss": "^8.4.42",
+		"prettier": "^3.3.3",
+		"prettier-plugin-svelte": "^3.2.6",
+		"publint": "^0.1.16",
+		"sass": "^1.77.8",
+		"svelte": "^5.0.0-next.241",
+		"svelte-check": "^3.8.6",
+		"tailwind-merge": "^2.5.2",
+		"tailwindcss": "^3.4.10",
+		"typescript": "^5.5.4",
 		"typescript-eslint": "^8.3.0",
 		"vite": "^5.4.2"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@paralleldrive/cuid2": "^2.2.2"
+	}
 }

@@ -1,3 +1,9 @@
-<h1>Welcome to your library project</h1>
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<div class="p-5 container grid place-items-center min-h-screen">
+	<ul class="">
+		<li class="">
+			<a href="/toasts" class="text-3xl underline text-sky-500 font-bold underline-offset-[5px]"
+				>Toasts</a
+			>
+		</li>
+	</ul>
+</div>
