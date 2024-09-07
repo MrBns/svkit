@@ -1,5 +1,4 @@
 import uid from '$lib/helpers/uid.js';
-import './toast.scss';
 import toastDefaultConfig from './toastDefaultConfig.js';
 
 export type ToastOptions = {
@@ -17,6 +16,13 @@ export type ToastOptions = {
 		| 'bottom-left'
 		| 'bottom-middle'
 		| 'bottom-right';
+};
+
+export type ToastInstance = {
+	content: Element;
+	container: Element;
+	close: (triggerEvent: boolean) => void;
+	onClose: () => void;
 };
 
 /**
@@ -50,11 +56,6 @@ export interface ToastBuilderConfig {
  * 3. `closeBtnTemplate` should return a button. at later we will place event handler on that button to close/remove that specific created toast;
  */
 export default class ToastBuilder {
-	container?: Element;
-	content?: Element;
-	closeBtn?: HTMLButtonElement;
-	onClose?: () => unknown;
-
 	private config: ToastBuilderConfig = toastDefaultConfig;
 
 	constructor(config: Partial<ToastBuilderConfig> = {}) {
@@ -68,7 +69,6 @@ export default class ToastBuilder {
 	 * @returns
 	 */
 	toast(param: Partial<ToastOptions>) {
-		console.log(param);
 		const toastParam: ToastOptions = {
 			html: '',
 			text: '',

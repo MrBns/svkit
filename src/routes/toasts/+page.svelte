@@ -1,7 +1,15 @@
 <script lang="ts">
 	import toast from '$lib/components/Toast/index.js';
 	import Button from 'internal/components/Button.svelte';
+	import { bpWatcher } from 'internal/lib/brakpointWatcher.svelte.js';
+	import { onMount } from 'svelte';
 	const html = String.raw;
+
+	onMount(() => {
+		console.log(bpWatcher.is('lg'));
+	});
+	$inspect(bpWatcher.currentBreakpoints);
+	$inspect(bpWatcher.is('lg'));
 </script>
 
 <main class="">

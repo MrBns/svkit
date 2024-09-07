@@ -1,12 +1,12 @@
 {
 	"name": "@mrbns/svkit",
-	"version": "0.0.1-alpha-05",
+	"version": "0.0.1-alpha-2",
 	"engines": {
 		"node": ">18"
 	},
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build && npm run package",
+		"build": "vite build && sass ./src/lib --no-source-map && npm run package",
 		"preview": "vite preview",
 		"package": "svelte-kit sync && svelte-package && publint",
 		"prepublishOnly": "npm run package",

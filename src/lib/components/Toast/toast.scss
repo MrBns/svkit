@@ -14,6 +14,7 @@
 	--svkit-toast__animation_duration: 0.25s;
 	--svkit-toast-container-padding: 10px;
 	--svkit-toast__lasting_duration: 5000ms;
+	--svkit-toast__container-z-index: 999;
 	// --svkit-
 	@include dark {
 		--svkit-toast__bg: #04121f;
@@ -40,6 +41,8 @@
 	position: fixed;
 	padding: var(--svkit-toast-container-padding);
 	transition: 0.25s ease-in-out;
+	pointer-events: none;
+	z-index: var(--svkit-toast__container-z-index);
 
 	&.container-top-right {
 		top: var(--svkit-toast__offset, 0px);
@@ -104,6 +107,7 @@
 	transition: var(--svkit-toast__animation_duration) ease-out;
 	position: relative;
 	isolation: isolate;
+	pointer-events: all;
 
 	&:not(.custom) {
 		background: var(--svkit-toast__bg);
