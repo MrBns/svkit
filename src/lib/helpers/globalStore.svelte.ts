@@ -21,7 +21,7 @@ export class State<T> {
 		this._state = arg;
 	}
 
-	get value(): T | undefined {
+	get value(): T {
 		return this._state;
 	}
 	set value(newValue: T) {
