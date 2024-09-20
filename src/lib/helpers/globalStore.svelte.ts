@@ -39,6 +39,9 @@ export class State<T> {
 	}
 }
 
+/**
+ * @deprecated it was a mistake to add this method. will remove in future release
+ */
 export function Derived<T>(expression: T) {
 	const _value = $derived(expression);
 	return {
