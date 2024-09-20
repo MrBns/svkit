@@ -1,36 +1,18 @@
-import { browser } from '$app/environment';
-import { goto } from '$app/navigation';
-import { page } from '$app/stores';
-import type { Unsubscriber } from 'svelte/store';
-
 export default class SvelteURLSearchParams implements URLSearchParams {
 	private params = $state<URLSearchParams>(new URLSearchParams(''));
-	private _unsubscribe: Unsubscriber | undefined;
 
 	get size(): number {
 		return this.params.size;
 	}
 
-	constructor(_params?: string[][] | string | URLSearchParams | Record<string, string>) {
-		if (_params) {
-			this.params = new URLSearchParams(_params);
-		} else {
-			this._unsubscribe = page.subscribe((value) => {
-				this.params = value.url.searchParams;
-			});
-		}
+	constructor(_params?: string[][] | Record<string, string> | string | URLSearchParams) {
+		this.params = new URLSearchParams(_params);
 	}
 
 	set(name: string, value: unknown) {
 		const _newParams = new URLSearchParams(this.params);
 		_newParams.set(name, String(value));
 		this.params = _newParams;
-	}
-	setAndChangeUrl(name: string, value: unknown, url?: string) {
-		if (browser) {
-			this.set(name, value);
-			goto(`${url ? '' : location.pathname}?` + this.params.toString());
-		}
 	}
 
 	get(name: string) {
@@ -73,8 +55,5 @@ export default class SvelteURLSearchParams implements URLSearchParams {
 	[Symbol.iterator](): IterableIterator<[string, string]> {
 		return this.entries();
 	}
-	[Symbol.dispose]() {
-		console.log('Destroying');
-		this._unsubscribe?.();
-	}
+	[Symbol.dispose]() {}
 }
