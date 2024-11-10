@@ -1,18 +1,3 @@
-// export function Store<T>(initialValue: T) {
-// 	let state = $state<T>(initialValue);
-// 	return {
-// 		get value() {
-// 			return state;
-// 		},
-// 		set value(value: T) {
-// 			state = value;
-// 		},
-// 		update(cb: (prev: T) => T) {
-// 			cb(state as T);
-// 		}
-// 	};
-// }
-
 export class State<T> {
 	/* @ts-expect-error should sailent the error */
 	_state = $state<T>(null);

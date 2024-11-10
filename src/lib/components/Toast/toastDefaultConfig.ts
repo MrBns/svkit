@@ -1,4 +1,4 @@
-import uid from '$lib/helpers/uid.js';
+import uid from '$lib/helpers/randomId.js';
 import type { ToastBuilderConfig } from './ToastBuilder.js';
 const html = String.raw;
 

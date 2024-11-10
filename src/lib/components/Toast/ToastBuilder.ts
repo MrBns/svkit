@@ -1,4 +1,4 @@
-import uid from '$lib/helpers/uid.js';
+import uid from '$lib/helpers/randomId.js';
 import toastDefaultConfig from './toastDefaultConfig.js';
 
 export type ToastOptions = {
