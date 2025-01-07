@@ -6,7 +6,7 @@
 	},
 	"scripts": {
 		"postinstall": "pnpm package",
-		"dev": "vite dev",
+		"dev": "vite dev --port 6110",
 		"build": "vite build &&  npm run package",
 		"preview": "vite preview",
 		"package": "svelte-kit sync &&  sass ./src/lib --no-source-map && svelte-package && publint",
