@@ -1,26 +1,30 @@
 export class State<T> {
 	/* @ts-expect-error should silent the error */
-	_state = $state<T>(null);
+	#state = $state<T>(null);
 
 	constructor(arg: T) {
-		this._state = arg;
+		this.#state = arg;
 	}
 
 	get value(): T {
-		return this._state;
+		return this.#state;
 	}
 	set value(newValue: T) {
-		this._state = newValue;
+		this.#state = newValue;
+	}
+
+	get snapshot() {
+		return $state.snapshot(this.#state);
 	}
 
 	update(cb: (oldValue: T) => T) {
-		cb(this._state);
+		cb(this.#state);
 	}
 	set(newValue: T) {
-		this._state = newValue;
+		this.#state = newValue;
 	}
 	get type() {
-		return typeof this._state;
+		return typeof this.#state;
 	}
 }
 
@@ -78,7 +82,7 @@ export class StateWithStatus<T> {
 	}
 
 	// It will return everything in a object. in a Static Value
-	getAll() {
+	snapshot() {
 		return {
 			status: $state.snapshot(this.#status),
 			data: $state.snapshot(this.#data),
