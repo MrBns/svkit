@@ -43,14 +43,13 @@ export type StateWithStatus_Statuses = 'loading' | 'loaded' | 'failed' | 'initia
  */
 export class StateWithStatus<T> {
 	#status = $state<StateWithStatus_Statuses>('initializing');
-	#data?: T = $state(undefined);
 	#message = $state<string>('');
 	#error? = $state<Error | undefined>(undefined);
 
-	constructor(
-		defaultData: T | undefined = undefined,
-		status: StateWithStatus_Statuses = 'initializing'
-	) {
+	//@ts-expect-error passing default data. so lets initialize sate with null. But it can't be created with null.
+	#data = $state<T>(null);
+
+	constructor(defaultData: T, status: StateWithStatus_Statuses = 'initializing') {
 		this.#status = status;
 		this.#message = '';
 		this.#error = undefined;
@@ -114,7 +113,7 @@ export class StateWithStatus<T> {
 	/**
 	 *  setting whole state. taking argument as parameter
 	 */
-	set(newData: { status: StateWithStatus_Statuses; data?: T; message?: string; error?: Error }) {
+	set(newData: { status: StateWithStatus_Statuses; data: T; message?: string; error?: Error }) {
 		this.#data = newData.data;
 		this.#error = newData.error;
 		this.#status = newData.status;
@@ -126,12 +125,12 @@ export class StateWithStatus<T> {
 	 * - in first param you can specify the status. but by default it will be `loading`
 	 * if you want more flexibility use set method. where you set everything.
 	 */
-	reset(status: StateWithStatus_Statuses = 'loading') {
-		this.#data = undefined;
-		this.#error = undefined;
-		this.#message = '';
-		this.#status = status;
-	}
+	// reset(status: StateWithStatus_Statuses = 'loading') {
+	// 	this.#data = null as T;
+	// 	this.#error = undefined;
+	// 	this.#message = '';
+	// 	this.#status = status;
+	// }
 
 	/**
 	 * #### This is will set `error` property in the Class
@@ -140,14 +139,10 @@ export class StateWithStatus<T> {
 	 * - set message as same as error message
 	 * @param error {Error}
 	 */
-	setError(error: Error, resetData: boolean = true) {
+	setError(error: Error) {
 		this.#status = 'failed';
 		this.#error = error;
 		this.#message = error.message;
-
-		if (resetData) {
-			this.#data = undefined;
-		}
 	}
 }
 

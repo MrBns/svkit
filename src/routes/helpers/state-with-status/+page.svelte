@@ -2,7 +2,7 @@
 	import { StateWithStatus } from '$lib/helpers/globalStore.svelte.js';
 	import Button from 'internal/components/Button.svelte';
 
-	const stateWithStates = new StateWithStatus<string | null>(undefined);
+	const stateWithStates = new StateWithStatus<string | undefined>(undefined);
 	let stateValue = $state<string>(' Hi. My name is Nazmul');
 	let { ...restProps }: {} = $props();
 </script>
@@ -20,7 +20,10 @@
 	{/if}
 
 	{#if stateWithStates.isLoaded()}
-		<Button class="bg-red-500" onclick={() => stateWithStates.reset()}>Unset</Button>
+		<Button
+			class="bg-red-500"
+			onclick={() => stateWithStates.set({ data: undefined, status: 'loading' })}>Unset</Button
+		>
 	{:else}
 		<Button
 			onclick={() =>
