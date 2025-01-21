@@ -121,6 +121,32 @@ export class StateWithStatus<T> {
 	}
 
 	/**
+	 * Method for Quickly Set Data
+	 *
+	 * equivalent to
+	 * ```ts
+	 * state.set({data: data, status: "loaded"})
+	 * ```
+	 */
+	setData(data: T) {
+		this.#data = data;
+		this.#status = 'loaded';
+	}
+
+	/**
+	 * quickly unset data. and status will be "loading".
+	 *
+	 * equivalent to
+	 * ```ts
+	 * state.set({data: data, status: "loading" })
+	 * ``
+	 */
+	unsetData(data: T) {
+		this.#data = data;
+		this.#status = 'loading';
+	}
+
+	/**
 	 * Will Reset the state.
 	 * - in first param you can specify the status. but by default it will be `loading`
 	 * if you want more flexibility use set method. where you set everything.

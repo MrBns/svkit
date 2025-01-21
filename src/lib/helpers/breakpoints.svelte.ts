@@ -22,6 +22,7 @@ export interface BreakPointWatcherOptions {
 
 /**
  * ### Browser Exclusive API
+ * @deprecated Use Builtin [`MediaQuery`](https://svelte.dev/docs/svelte/svelte-reactivity#MediaQuery) From svelte/reactivity module.
  */
 export default class BreakPointWatcher<T extends TBreakPoints> {
 	/* Breakpoint must be in order Bigger to Smaller. Otherwise wont work. */
