@@ -31,7 +31,12 @@ export class State<T> {
 // -------------------------------------
 //			 State with Status
 // ------------------------------------
-export type StateWithStatus_Statuses = 'loading' | 'loaded' | 'failed' | 'initializing';
+export type StateWithStatus_Statuses =
+	| 'loading'
+	| 'loaded'
+	| 'failed'
+	| 'initializing'
+	| 'unloaded';
 
 /**
  * ### Make a Svelte 5 Runes State with Status tracking.
@@ -80,8 +85,12 @@ export class StateWithStatus<T> {
 		return this.#status === 'failed';
 	}
 
+	isUnloaded(): boolean {
+		return this.status === 'unloaded';
+	}
+
 	// It will return everything in a object. in a Static Value
-	snapshot() {
+	get snapshot() {
 		return {
 			status: $state.snapshot(this.#status),
 			data: $state.snapshot(this.#data),
@@ -134,16 +143,16 @@ export class StateWithStatus<T> {
 	}
 
 	/**
-	 * quickly unset data. and status will be "loading".
+	 * quickly unset data. and status will be "unloaded".
 	 *
 	 * equivalent to
 	 * ```ts
-	 * state.set({data: data, status: "loading" })
+	 * state.set({data: data, status: "unloaded" })
 	 * ``
 	 */
 	unsetData(data: T) {
 		this.#data = data;
-		this.#status = 'loading';
+		this.#status = 'unloaded';
 	}
 
 	/**

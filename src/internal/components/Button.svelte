@@ -17,12 +17,9 @@
 <button
 	{...restProps}
 	class={m(
-		'px-6 py-2 text-gray-950 rounded-md border shadow shadow-gray-300 dark:shadow-gray-900 dark:border-slate-600 bg-white',
+		'px-6 py-2 text-gray-950 rounded-md border shadow-sm shadow-gray-300 dark:shadow-gray-900 dark:border-slate-600 bg-white',
 		restProps.class
 	)}
 >
 	{@render children()}
 </button>
-
-<style lang="postcss">
-</style>

@@ -90,8 +90,8 @@
 										placeholder="type something here"
 									/>
 									<div class="space-x-3">
-										<button class="px-2 py-1 text-sm rounded bg-red-400 text-white">Cancel</button>
-										<button class="px-2 py-1 text-sm rounded bg-sky-500 text-white">Submit</button>
+										<button class="px-2 py-1 text-sm rounded-sm bg-red-400 text-white">Cancel</button>
+										<button class="px-2 py-1 text-sm rounded-sm bg-sky-500 text-white">Submit</button>
 									</div>
 								</div>
 							`,
@@ -103,6 +103,3 @@
 		</div>
 	</div>
 </main>
-
-<style lang="postcss">
-</style>
