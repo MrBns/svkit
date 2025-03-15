@@ -5,7 +5,6 @@
 		"node": ">18"
 	},
 	"scripts": {
-		"postinstall": "pnpm package",
 		"dev": "vite dev --port 6110",
 		"build": "vite build &&  npm run package",
 		"preview": "vite preview",
@@ -24,6 +23,10 @@
 		"./helper": {
 			"types": "./dist/helpers/index.d.ts",
 			"default": "./dist/helpers/index.js"
+		},
+		"./states": {
+			"types": "./dist/states/index.d.ts",
+			"default": "./dist/states/index.js"
 		}
 	},
 	"files": [

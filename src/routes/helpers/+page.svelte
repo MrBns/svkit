@@ -1,10 +1,10 @@
 <script lang="ts">
 	import debounce from '$lib/helpers/debounce.js';
-	import Button from 'internal/components/Button.svelte';
+	import Button from '~internal/components/Button.svelte';
 
 	let clickCount = $state(0);
 
-	const handleClickDe = debounce((e: MouseEvent & { currentTarget: HTMLButtonElement }) => {
+	const handleClickDe = debounce((_e: MouseEvent & { currentTarget: HTMLButtonElement }) => {
 		clickCount++;
 	}, 250);
 </script>

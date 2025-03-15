@@ -1,15 +1,13 @@
 <script lang="ts">
 	import toast from '$lib/components/Toast/index.js';
-	import Button from 'internal/components/Button.svelte';
-	import { bpWatcher } from 'internal/lib/brakpointWatcher.svelte.js';
+	import Button from '~internal/components/Button.svelte';
+	import { bpWatcher } from '~internal/lib/brakpointWatcher.svelte.js';
 	import { onMount } from 'svelte';
 	const html = String.raw;
 
 	onMount(() => {
 		console.log(bpWatcher.is('lg'));
 	});
-	$inspect(bpWatcher.currentBreakpoints);
-	$inspect(bpWatcher.is('lg'));
 </script>
 
 <main class="">
@@ -90,8 +88,12 @@
 										placeholder="type something here"
 									/>
 									<div class="space-x-3">
-										<button class="px-2 py-1 text-sm rounded-sm bg-red-400 text-white">Cancel</button>
-										<button class="px-2 py-1 text-sm rounded-sm bg-sky-500 text-white">Submit</button>
+										<button class="px-2 py-1 text-sm rounded-sm bg-red-400 text-white">
+											Cancel
+										</button>
+										<button class="px-2 py-1 text-sm rounded-sm bg-sky-500 text-white">
+											Submit
+										</button>
 									</div>
 								</div>
 							`,

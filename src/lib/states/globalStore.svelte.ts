@@ -73,7 +73,7 @@ export class StateWithStatus<T> {
 	 *  checking if state is loaded. this checks either state is `loaded` or `failed`
 	 * @returns
 	 */
-	isLoaded(): boolean {
+	isCompleted(): boolean {
 		return this.#status === 'loaded' || this.#status === 'failed';
 	}
 

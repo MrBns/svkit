@@ -1,13 +1,21 @@
-import type { StateWithStatus_Statuses } from '../globalStore.svelte.js';
+export type StatusState_Statuses =
+	| 'loading'
+	| 'completed'
+	| 'failed'
+	| 'initializing'
+	| 'unloaded'
+	| 'pending';
 
 export class StatusState {
-	#status = $state<StateWithStatus_Statuses>('initializing');
+	#status = $state<StatusState_Statuses>('initializing');
 	#error = $state<Error>();
 	#progress = $state(0);
+	#message = $state('');
 
-	constructor(status: StateWithStatus_Statuses = 'initializing', _progress = 0) {
+	constructor(status: StatusState_Statuses = 'initializing', _progress = 0, _message = '') {
 		this.#status = status;
 		this.#progress = _progress;
+		this.#message = _message;
 	}
 
 	/**
@@ -19,11 +27,19 @@ export class StatusState {
 	}
 
 	/**
+	 *	Checking if State is pending. this check either it is `initializing` or `loading`
+	 * @returns
+	 */
+	isPending(): boolean {
+		return this.#status === 'pending';
+	}
+
+	/**
 	 *  checking if state is loaded. this checks either state is `loaded` or `failed`
 	 * @returns
 	 */
-	isLoaded(): boolean {
-		return this.#status === 'loaded' || this.#status === 'failed';
+	isCompleted(): boolean {
+		return this.#status === 'completed' || this.#status === 'failed';
 	}
 
 	/**
@@ -54,6 +70,9 @@ export class StatusState {
 	get status() {
 		return this.#status;
 	}
+	get message() {
+		return this.#message;
+	}
 
 	get progress() {
 		return this.#progress;
@@ -68,10 +87,15 @@ export class StatusState {
 	 * @param _status status of the state
 	 * @param _progress progress of the state
 	 */
-	set(_progress: number = 1, _status: StateWithStatus_Statuses = 'loading') {
-		if (_progress >= 100 || _status === 'loaded') {
+	set(_progress: number = 1, _status: StatusState_Statuses = 'loading', _message = '') {
+		// Reassigning message. No matter what is the status or progress;
+		if (_message) {
+			this.#message = _message;
+		}
+
+		if (_progress >= 100 || _status === 'completed') {
 			this.#progress = 100;
-			this.#status = 'loaded';
+			this.#status = 'completed';
 		} else if (_progress <= 0) {
 			this.#progress = 0;
 			this.#status = 'loading';
@@ -79,6 +103,34 @@ export class StatusState {
 			this.#progress = _progress;
 			this.#status = _status;
 		}
+	}
+
+	/**
+	 *### A quick way to set status. just the status.
+	 *
+	 * but since progress and status are relative. status changes will affect the progress.
+	 * here is the map.
+	 * - `completed -> 100` (progress)
+	 * - `unloaded  ->   0` (progress)
+	 * - any other status wont update the progress.
+	 * @param _status status of state
+	 */
+	setStatus(_status: StatusState_Statuses) {
+		if (_status === 'completed') {
+			this.#progress = 100;
+		} else if (_status === 'unloaded') {
+			this.#progress = 0;
+		}
+
+		this.#status = _status;
+	}
+
+	/**
+	 * Update "just the status".
+	 * @param _message message of status
+	 */
+	setMessage(_message: string) {
+		this.#message = _message;
 	}
 
 	/**

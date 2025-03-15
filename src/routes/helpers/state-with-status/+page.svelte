@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { StateWithStatus } from '$lib/helpers/globalStore.svelte.js';
-	import Button from 'internal/components/Button.svelte';
+	import { StateWithStatus } from '$lib/states/globalStore.svelte.js';
+	import Button from '../../../internal/components/Button.svelte';
 
 	const stateWithStates = new StateWithStatus<string | undefined>(undefined);
 	let stateValue = $state<string>(' Hi. My name is Nazmul');
-	let { ...restProps }: {} = $props();
 </script>
 
 <main class="container border-4 border-dashed border-purple-400 space-y-4 rounded-3xl p-10">
@@ -13,13 +12,13 @@
 		default value is <strong class="">{stateWithStates.data}</strong> and <br /> type of {typeof stateWithStates.data}
 	</h1>
 
-	{#if stateWithStates.isLoaded()}
+	{#if stateWithStates.isCompleted()}
 		<p class="">loaded</p>
 	{:else if stateWithStates.isLoading()}
 		<p class="">Loading</p>
 	{/if}
 
-	{#if stateWithStates.isLoaded()}
+	{#if stateWithStates.isCompleted()}
 		<Button
 			class="bg-red-500"
 			onclick={() => stateWithStates.set({ data: undefined, status: 'loading' })}>Unset</Button

@@ -1,12 +1,10 @@
 <script lang="ts">
-	import { StateWithStatus } from '$lib/helpers/globalStore.svelte.js';
-	import { StatusState } from '$lib/helpers/index.js';
-	import Button from 'internal/components/Button.svelte';
+	import { StatusState } from '$lib/states/StatusState.svelte.js';
+	import Button from '~internal/components/Button.svelte';
 	import { onMount } from 'svelte';
 
 	const stateWithStates = new StatusState();
 	let stateValue = $state<number>(0);
-	let { ...restProps }: {} = $props();
 
 	onMount(() => {
 		let interval = 1;
@@ -19,8 +17,6 @@
 			interval++;
 		}, 500);
 	});
-
-	$inspect(stateWithStates.progress);
 </script>
 
 <main class="container border-4 border-dashed border-purple-400 space-y-4 rounded-3xl p-10">
@@ -38,13 +34,13 @@
 
 	<p class="">Loading Percent = <span class="text-3xl">{stateWithStates.progress}</span></p>
 
-	{#if stateWithStates.isLoaded()}
+	{#if stateWithStates.isCompleted()}
 		<p class="">loaded</p>
 	{:else if stateWithStates.isLoading()}
 		<p class="">Loading</p>
 	{/if}
 
-	{#if stateWithStates.isLoaded()}
+	{#if stateWithStates.isCompleted()}
 		<Button class="bg-red-500" onclick={() => stateWithStates.set(0)}>Unset</Button>
 	{:else}
 		<Button onclick={() => stateWithStates.set(stateWithStates.snapshot.progress + 10)}
