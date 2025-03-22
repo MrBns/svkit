@@ -1,10 +1,11 @@
 export type StatusState_Statuses =
+	| 'initializing'
 	| 'loading'
+	| 'pending'
+	| 'processing'
 	| 'completed'
 	| 'failed'
-	| 'initializing'
-	| 'unloaded'
-	| 'pending';
+	| 'unloaded';
 
 export class StatusState {
 	#status = $state<StatusState_Statuses>('initializing');
@@ -19,6 +20,14 @@ export class StatusState {
 	}
 
 	/**
+	 *	Checking if State is processing. this check either it is `initializing`
+	 * @returns
+	 */
+	isInitializing(): boolean {
+		return this.#status === 'initializing';
+	}
+
+	/**
 	 *	Checking if State is loading. this check either it is `initializing` or `loading`
 	 * @returns
 	 */
@@ -27,11 +36,27 @@ export class StatusState {
 	}
 
 	/**
+	 *	Checking if State is loading. this check either it is `loading`.
+	 * @returns
+	 */
+	isLoadingOnly(): boolean {
+		return this.#status === 'loading';
+	}
+
+	/**
 	 *	Checking if State is pending. this check either it is `initializing` or `loading`
 	 * @returns
 	 */
 	isPending(): boolean {
 		return this.#status === 'pending';
+	}
+
+	/**
+	 *	Checking if State is processing. this check either it is `processing`
+	 * @returns
+	 */
+	isProcessing(): boolean {
+		return this.#status === 'processing';
 	}
 
 	/**
