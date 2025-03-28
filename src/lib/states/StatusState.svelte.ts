@@ -167,6 +167,22 @@ export class StatusState {
 	 */
 	setError(error: Error) {
 		this.#status = 'failed';
+		this.#progress = 0;
+		this.#message = error.message;
 		this.#error = error;
+	}
+
+	/**
+	 * #### Quicker way to set Failed status with message;
+	 * - set status as failed
+	 * - set progress = 0;
+	 * - set error is a wrapped of message `new Error(message)`
+	 * @param _message
+	 */
+	setFailed(_message: string) {
+		this.#progress = 0;
+		this.#message = _message;
+		this.#status = 'failed';
+		this.#error = new Error(_message);
 	}
 }
