@@ -64,7 +64,7 @@ export class StatusState {
 	 * @returns
 	 */
 	isCompleted(): boolean {
-		return this.#status === 'completed' || this.#status === 'failed';
+		return this.#status === 'completed';
 	}
 
 	/**
