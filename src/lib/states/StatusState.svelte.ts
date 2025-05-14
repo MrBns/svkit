@@ -1,10 +1,11 @@
 export type StatusState_Statuses =
+	| 'initializing'
 	| 'loading'
+	| 'pending'
+	| 'processing'
 	| 'completed'
 	| 'failed'
-	| 'initializing'
-	| 'unloaded'
-	| 'pending';
+	| 'unloaded';
 
 export class StatusState {
 	#status = $state<StatusState_Statuses>('initializing');
@@ -19,11 +20,27 @@ export class StatusState {
 	}
 
 	/**
+	 *	Checking if State is processing. this check either it is `initializing`
+	 * @returns
+	 */
+	isInitializing(): boolean {
+		return this.#status === 'initializing';
+	}
+
+	/**
 	 *	Checking if State is loading. this check either it is `initializing` or `loading`
 	 * @returns
 	 */
 	isLoading(): boolean {
 		return this.#status === 'initializing' || this.#status === 'loading';
+	}
+
+	/**
+	 *	Checking if State is loading. this check either it is `loading`.
+	 * @returns
+	 */
+	isLoadingOnly(): boolean {
+		return this.#status === 'loading';
 	}
 
 	/**
@@ -35,11 +52,19 @@ export class StatusState {
 	}
 
 	/**
+	 *	Checking if State is processing. this check either it is `processing`
+	 * @returns
+	 */
+	isProcessing(): boolean {
+		return this.#status === 'processing';
+	}
+
+	/**
 	 *  checking if state is loaded. this checks either state is `loaded` or `failed`
 	 * @returns
 	 */
 	isCompleted(): boolean {
-		return this.#status === 'completed' || this.#status === 'failed';
+		return this.#status === 'completed';
 	}
 
 	/**
@@ -142,6 +167,22 @@ export class StatusState {
 	 */
 	setError(error: Error) {
 		this.#status = 'failed';
+		this.#progress = 0;
+		this.#message = error.message;
 		this.#error = error;
+	}
+
+	/**
+	 * #### Quicker way to set Failed status with message;
+	 * - set status as failed
+	 * - set progress = 0;
+	 * - set error is a wrapped of message `new Error(message)`
+	 * @param _message
+	 */
+	setFailed(_message: string) {
+		this.#progress = 0;
+		this.#message = _message;
+		this.#status = 'failed';
+		this.#error = new Error(_message);
 	}
 }

@@ -9,6 +9,7 @@
 		"build": "vite build &&  npm run package",
 		"preview": "vite preview",
 		"package": "svelte-kit sync &&  sass ./src/lib --no-source-map && svelte-package -o ./publish/dist",
+		"t:package": "svelte-kit sync && npx sass ./src/lib --no-source-map && svelte-package && publint",
 		"prepublishOnly": "npm run package",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
