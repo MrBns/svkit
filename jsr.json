@@ -1,6 +1,0 @@
-{
-    "name": "@fav/svkit",
-    "exports": {
-        ".": "./"
-    }
-}

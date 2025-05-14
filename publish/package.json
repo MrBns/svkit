@@ -1,0 +1,54 @@
+{
+    "name": "@mrbns/svkit",
+    "version": "5.0.1",
+    "engines": {
+        "node": ">20"
+    },
+    "description": "Svelte 5 Utility Library",
+    "license": "MIT",
+    "type": "module",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "svelte": "./dist/index.js"
+        },
+        "./helper": {
+            "types": "./dist/helpers/index.d.ts",
+            "default": "./dist/helpers/index.js"
+        },
+        "./states": {
+            "types": "./dist/states/index.d.ts",
+            "default": "./dist/states/index.js"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mrbns/svkit.git"
+    },
+    "scripts": {
+        "prepublishOnly": "npx publint"
+    },
+    "peerDependencies": {
+        "@sveltejs/kit": "^2.17.3",
+        "svelte": "^5.20.5"
+    },
+    "files": [
+        "dist",
+        "!dist/**/*.test.*",
+        "!dist/**/*.spec.*",
+        "./README.md"
+    ],
+    "author": {
+        "name": "Mr Binary Siper <@mrbns>",
+        "email": "hi@mrbns.dev",
+        "url": "https://mrbns.dev"
+    },
+    "keywords": [
+        "svelte5",
+        "utility",
+        "svelte-ts",
+        "svelte-runes"
+    ]
+}

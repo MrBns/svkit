@@ -7,6 +7,12 @@ node_modules
 /build
 /dist
 
+# publish
+publish/*
+!publish/package.json
+
+
+
 # OS
 .DS_Store
 Thumbs.db
