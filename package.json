@@ -1,6 +1,6 @@
 {
 	"name": "@mrbns/svkit",
-	"version": "5.0.2",
+	"version": "5.1.0",
 	"scripts": {
 		"dev": "vite dev --port 6110",
 		"build": "vite build &&  npm run package",
@@ -32,6 +32,11 @@
 			"types": "./dist/states/index.d.ts",
 			"svelte": "./dist/states/index.js",
 			"default": "./dist/states/index.js"
+		},
+		"./Id/counterId": {
+			"types": "./dist/extra/counterId.js",
+			"svelte": "./dist/extra/counterId.js",
+			"default": "./dist/extra/counterId.d.ts"
 		}
 	},
 	"files": [
